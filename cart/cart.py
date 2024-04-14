@@ -57,6 +57,7 @@ class Cart():
 
             #save carty to the profile model
             current_user.update(old_cart=str(carty))
+            
     def total(self):
         quantities = self.cart
         product_ids = self.cart.keys()
@@ -126,3 +127,15 @@ class Cart():
 
             #save carty to the profile model
             current_user.update(old_cart=str(carty))
+
+    def deleteAll(self):
+        # Gán old_cart bằng một dictionary rỗng
+        self.cart = {}
+        self.session['session_key'] = self.cart
+        self.session.modified = True
+
+        # Deal with logged in user
+        if self.request.user.is_authenticated:
+            current_user = Profile.objects.filter(user__id=self.request.user.id)
+            # Gán old_cart của user bằng một dictionary rỗng
+            current_user.update(old_cart={})

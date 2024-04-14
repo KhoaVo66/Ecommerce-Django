@@ -3,7 +3,7 @@
     <header class="bg-success py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Checkout</h1>
+                <h1 class="display-4 fw-bolder">Billing</h1>
             </div>
         </div>
     </header>
@@ -36,12 +36,21 @@
               </ul>
             </div>
             <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">Shipping Information</h4>
-                  <form action="{% url "billing" %}" method="POST">
-                    {% csrf_token %}
-                    {{ shipping_form.as_p }}
-                    <button class="btn btn-success btn-lg btn-block" type="submit">Continue to checkout</button>
-                  </form>
+                <div class="card">
+                  <div class="card-header">
+                    Shipping Information
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text">Name: {{ shipping_info.shipping_full_name}}</p>
+                    <p class="card-text">Phone number: {{ shipping_info.shipping_phone}}</p>
+                    <p class="card-text">Address: {{ shipping_info.shipping_address}}</p>
+                    <p class="card-text">City: {{ shipping_info.shipping_city}}</p>
+                    <p class="card-text">Country: {{ shipping_info.shipping_country}}</p>
+                    <a href="{% url "checkout" %}" class='btn btn-outline-success mt-1'>Update Shipping Info</a>
+                  </div>
+                </div>
+                <br>
+                <a href='{% url "payment_card" %}' class="btn btn-success btn-lg btn-block mt-2 px-4" >Pay now</a>
             </div>
           </div>
     </div>

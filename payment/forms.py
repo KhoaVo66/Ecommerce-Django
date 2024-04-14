@@ -13,3 +13,10 @@ class ShippingForm(forms.ModelForm):
         fields = ['shipping_full_name','shipping_phone','shipping_address','shipping_city','shipping_country']
 
         exclude = ['user',]
+
+
+class PaymentForm(forms.Form):
+    card_number = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Card Number', 'pattern':'[0-9]{16}', 'oninput': "setCustomValidity('')", 'oninvalid': "setCustomValidity('Please enter a 16-digit card number')"}), required=True)
+    exp_month = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Expiration Month'}), required=True)
+    exp_year = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Expiration Year'}), required=True)
+    cvc = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'CVC'}), required=True)

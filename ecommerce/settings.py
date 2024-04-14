@@ -105,9 +105,10 @@ database_url = os.environ.get('DATABASE_URL')
 
 DATABASES['default'] = dj_database_url.parse(database_url)
 
-#'postgres://ecommerce_django_9g1g_user:Zipkxes7P0fNUtF3CRNk4E0ahHpjrb7V@dpg-cob3cfa1hbls73alokrg-a.oregon-postgres.render.com/ecommerce_django_9g1g'
+'postgres://ecommerce_django_9g1g_user:Zipkxes7P0fNUtF3CRNk4E0ahHpjrb7V@dpg-cob3cfa1hbls73alokrg-a.oregon-postgres.render.com/ecommerce_django_9g1g'
 
-
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51P4QjJE5PFES22RyC3fxrZ5Z1LkZUEULOxDITn4uzXOlM1HCrL90S4MAl1msVrdplpwPz1X1atKQ5W9ktIKpfDUh00kTBLTvDl'
+STRIPE_SECRET_KEY = 'sk_test_51P4QjJE5PFES22RyaPj4hNlW9PyLwNZKWDcFaBKcsxKmA39OOQPEu0nZxYNVuCSJVLgrjB4f08Sc7ajqbBTUJiUm00NkQ59iq1'
 
 
 # Password validation
