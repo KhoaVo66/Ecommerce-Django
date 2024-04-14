@@ -50,8 +50,69 @@
                   </div>
                 </div>
                 <br>
-                <a href='{% url "payment_card" %}' class="btn btn-success btn-lg btn-block mt-2 px-4" >Pay now</a>
+                <select class="form-select option-pay" aria-label="Default select example">
+                  <option value="0" selected>Cash</option>
+                  <option value="1" >Card</option>
+                </select>
+                <form id="credit-card-info" method="post" class="mt-4" action="{% url 'process_payment' %}">
+                  {% csrf_token %}
+                  <div class="row mt-3" >
+                    <div class="col-md-6 mb-3">
+                      <label for="cc-number">Credit card number</label>
+                      <input type="text" class="form-control" id="cc-number" placeholder="Enter your card number" required pattern="[0-9]{16}" title="Card number must be 16 digits">
+                      <div class="invalid-feedback">
+                        Credit card number is required
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 mb-3">
+                      <label for="cc-expiration">Expiration</label>
+                      <input type="text" class="form-control" id="cc-expiration" placeholder="MM/YY" required pattern="(0[1-9]|1[0-2])\/(2[3-9])|(2[3-9]\/[0-9][0-9])" title="Expiry date must be in MM/YY format, with YY not below 25, and MM between 01 and 12">
+                      <div class="invalid-feedback">
+                        Expiration date required
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">CVV</label>
+                        <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+                        <div class="invalid-feedback">
+                          Security code required
+                        </div>
+                    </div>
+                  </div>      
+                  <button type="submit" class="btn btn-success btn-lg btn-block mt-2 px-4 cash">Pay now</button>
+                </form>
+                <br>
+                <a id="cash-button" href='{% url "payment_cash" %}' class="btn btn-success btn-lg btn-block mt-2 px-4 cash" type="submit">Pay now</a>
+                <br>
             </div>
           </div>
     </div>
+    
+
+    <script>
+        // Lấy thẻ select bằng class 'option-pay'
+        var selectElement = document.querySelector('.option-pay');
+        var creditCardInfo = document.getElementById('credit-card-info');
+        var cashButton = document.getElementById('cash-button');
+        
+        creditCardInfo.style.display = "none";
+        cashButton.style.display = "block";
+        // Lắng nghe sự kiện thay đổi giá trị của thẻ select
+        selectElement.addEventListener('change', function() {
+            // Lấy giá trị đã chọn của thẻ select
+            var selectedValue = selectElement.value;
+            
+            // Hiển thị hoặc ẩn thông tin thẻ tín dụng dựa trên giá trị đã chọn
+            if (selectedValue === "0") {
+                creditCardInfo.style.display = "none";
+                cashButton.style.display = "block";
+            } else if (selectedValue === "1") {
+                creditCardInfo.style.display = "block";
+                cashButton.style.display = "none";
+            }
+            
+        });
+    </script>
 {% endblock content %}

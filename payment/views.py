@@ -8,14 +8,12 @@ from django.conf import settings
 # Create your views here.
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-def payment_card(request): 
-    if request.method == 'POST':
-        form = PaymentForm(request.POST)
-        if form.is_valid():
-            return render(request, 'payment/success.html')
-    else:
-        form = PaymentForm()
-    return render(request, 'payment/payment.html', {'form': form})
+def payment_cash(request):
+    cart = Cart(request)
+    cart.deleteAll()
+    messages.success(request, 'Your order has been processed!')
+    return redirect('home')
+
 
 def process_payment(request):
     if request.method == 'POST':
@@ -24,7 +22,7 @@ def process_payment(request):
         try:
             customer = stripe.Customer.create(
                 email=request.user.email,
-                name=request.user.username,
+                name=request.user.first_name,
             )
             customer_id = customer.id
 
