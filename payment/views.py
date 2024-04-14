@@ -53,8 +53,6 @@ def process_payment(request):
         return render(request, 'payment/checkout.html')
 
 
-def payment_success(request):
-    return render(request, 'payment/payment_success.html',{})
 
 def checkout(request):
 
