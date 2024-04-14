@@ -17,6 +17,5 @@ class ShippingForm(forms.ModelForm):
 
 class PaymentForm(forms.Form):
     card_number = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Card Number', 'pattern':'[0-9]{16}', 'oninput': "setCustomValidity('')", 'oninvalid': "setCustomValidity('Please enter a 16-digit card number')"}), required=True)
-    exp_month = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Expiration Month'}), required=True)
-    exp_year = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Expiration Year'}), required=True)
+    exp_date = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'MM/YY','pattern':'(0[1-9]|1[0-2])\/(2[3-9])|(2[3-9]\/[0-9][0-9])','oninvalid': "setCustomValidity('Expiry date must be in MM/YY format, with YY not below 23, and MM between 01 and 12')"}), required=True)
     cvc = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'CVC'}), required=True)
