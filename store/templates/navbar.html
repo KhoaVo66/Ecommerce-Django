@@ -22,7 +22,7 @@
                 </li>
                 <form method="POST" action="{% url 'search' %}" class="form-inline my-2 my-lg-0 d-flex">
                     {% csrf_token %}
-                    <input class="form-control mr-sm-2 ms-2" type="search" placeholder="Search" aria-label="Search" name="searched">
+                    <input class="form-control mr-sm-2 ms-4" style='width: 300px;' type="search" placeholder="Search" aria-label="Search" name="searched">
                 </form>
             </ul>
             <form class="d-flex">
