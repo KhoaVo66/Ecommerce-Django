@@ -46,19 +46,19 @@
                         <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                             <!-- Quantity -->
                             <div class="d-flex mb-4" style="max-width: 300px">
-                            <button class="btn btn-success px-3 me-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                -
-                            </button>
+                                <button class="btn btn-success px-3 me-2"
+                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                    -
+                                </button>
 
-                            <div class="form-outline">
-                                <input id="select{{product.id}}" min="1" name="quantity" value="{% for key, value in quantities.items %}{% if key == product.id|slugify %}{{value}}{% endif %}{% endfor %}" type="number" class="form-control qty-cart" />
-                            </div>
+                                <div class="form-outline">
+                                    <input id="select{{product.id}}" min="1" name="quantity" value="{% for key, value in quantities.items %}{% if key == product.id|slugify %}{{value}}{% endif %}{% endfor %}" type="number" class="form-control qty-cart" />
+                                </div>
 
-                            <button class="btn btn-success px-3 ms-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                +
-                            </button>
+                                <button class="btn btn-success px-3 ms-2"
+                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                    +
+                                </button>
                             </div>
                             <!-- Quantity -->
                             <!-- Price -->
